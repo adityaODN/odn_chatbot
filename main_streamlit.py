@@ -19,8 +19,8 @@ if not OPENAI_API_KEY:
     st.stop()
 
 # ---------------- Initialize LLM ----------------
-llm = ChatOpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
-
+# llm = ChatOpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
+llm = ChatOpenAI(api_key=OPENAI_API_KEY, model="gpt-4o-mini")
 # ---------------- MySQL Connection ----------------
 db = get_sqlalchemy_database()
 db_chain = SQLDatabaseChain.from_llm(llm, db, verbose=True)
@@ -354,4 +354,5 @@ with st.form(key="chat_form", clear_on_submit=True):
         st.rerun()
 
 st.markdown('</div>', unsafe_allow_html=True)
+
 
