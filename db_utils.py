@@ -22,11 +22,11 @@ import streamlit as st
 if os.path.exists(".env"):
     load_dotenv()
 
-DB_HOST = st.secrets.get(MYSQL_HOST, os.getenv(MYSQL_HOST))
-DB_PORT = int(st.secrets.get(DB_PORT, os.getenv(DB_PORT, 3306)))
-DB_USER = st.secrets.get(DB_USER, os.getenv(DB_USER))
-DB_PASSWORD = st.secrets.get(DB_PASSWORD, os.getenv(DB_PASSWORD))
-DB_NAME = st.secrets.get(DB_NAME, os.getenv(DB_NAME))
+DB_HOST = st.secrets.get("MYSQL_HOST", os.getenv("MYSQL_HOST"))
+DB_PORT = int(st.secrets.get("DB_PORT", os.getenv("DB_PORT", 3306)))
+DB_USER = st.secrets.get("DB_USER", os.getenv("DB_USER"))
+DB_PASSWORD = st.secrets.get("DB_PASSWORD", os.getenv("DB_PASSWORD"))
+DB_NAME = st.secrets.get("DB_NAME", os.getenv("DB_NAME"))
 
 def get_sqlalchemy_database():
     """
@@ -37,5 +37,6 @@ def get_sqlalchemy_database():
     
     # Return SQLDatabase object compatible with LangChain
     return SQLDatabase.from_uri(connection_string)
+
 
 
